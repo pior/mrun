@@ -12,7 +12,7 @@ other components.
 
 ```go
 import (
-	"github.com/pior/mrun"
+    "github.com/pior/mrun"
 )
 ```
 
@@ -22,8 +22,8 @@ type Server struct {}
 
 func (s *Server) Run(ctx context.Context) error {
     // serve stuff
-	<-ctx.Done()
-	return nil
+    <-ctx.Done()
+    return nil
 }
 
 type EventEmitter struct {}
@@ -32,14 +32,33 @@ func (s *EventEmitter) Run(ctx context.Context) error {
     // emit stuff
     <-ctx.Done()
     // FLUSH STUFF !!
-	return nil
+    return nil
 }
 ```
 
 Start your application:
 ```go
 func main() {
-	mrun.RunAndExit(&Server{}, &EventEmitter{})
+    mrun.RunAndExit(&Server{}, &EventEmitter{})
+}
+```
+
+Which is equivalent to:
+```go
+func main() {
+    mr := New(&Server{}, &EventEmitter{})
+
+    mr.SetSignalsHandler()
+
+    ctx := context.Background()
+    err := mr.Run(ctx)
+
+    if err != nil {
+        mr.Logger.Infof("Error: %s", err)
+        os.Exit(1)
+    }
+
+    os.Exit(0)
 }
 ```
 
