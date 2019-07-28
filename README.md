@@ -1,5 +1,8 @@
 # MRun
 
+[![GoDoc](https://godoc.org/github.com/pior/mrun?status.svg)](https://godoc.org/github.com/pior/mrun)
+[![Go Report Card](https://goreportcard.com/badge/github.com/pior/mrun)](https://goreportcard.com/report/github.com/pior/mrun)
+
 Simplest tool to run and properly shutdown multiple components in the same process.
 
 When your application relies on support components like an event emitter or a trace collector, those components should
