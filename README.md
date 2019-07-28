@@ -42,3 +42,7 @@ func main() {
 	mrun.RunAndExit(&Server{}, &EventEmitter{})
 }
 ```
+
+## License
+
+The MIT License (MIT)
